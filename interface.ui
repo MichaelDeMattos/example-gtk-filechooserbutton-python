@@ -82,7 +82,7 @@
               <object class="GtkToolButton" id="bt_open_view_file">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
-                <property name="label" translatable="yes">Abrir</property>
+                <property name="label" translatable="yes">Open</property>
                 <property name="use_underline">True</property>
                 <property name="stock_id">gtk-open</property>
                 <signal name="clicked" handler="on_bt_open_view_file_clicked" swapped="no"/>
@@ -106,7 +106,7 @@
               <object class="GtkToolButton" id="bt_exit">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
-                <property name="label" translatable="yes">Sair</property>
+                <property name="label" translatable="yes">Exit</property>
                 <property name="use_underline">True</property>
                 <property name="stock_id">gtk-quit</property>
                 <signal name="clicked" handler="on_bt_exit_clicked" swapped="no"/>
@@ -136,7 +136,7 @@
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
                 <property name="halign">center</property>
-                <property name="label" translatable="yes">Procurar arquivo:</property>
+                <property name="label" translatable="yes">Search file::</property>
                 <property name="xalign">1</property>
               </object>
               <packing>
@@ -149,7 +149,7 @@
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
                 <property name="halign">center</property>
-                <property name="label" translatable="yes">Descrição:</property>
+                <property name="label" translatable="yes">File description:</property>
                 <property name="xalign">1</property>
               </object>
               <packing>
@@ -258,7 +258,7 @@
                 </child>
                 <child>
                   <object class="GtkTreeViewColumn">
-                    <property name="title" translatable="yes">Descrição</property>
+                    <property name="title" translatable="yes">File description</property>
                     <child>
                       <object class="GtkCellRendererText"/>
                       <attributes>
@@ -269,7 +269,7 @@
                 </child>
                 <child>
                   <object class="GtkTreeViewColumn">
-                    <property name="title" translatable="yes">Nome do arquivo</property>
+                    <property name="title" translatable="yes">File name</property>
                     <child>
                       <object class="GtkCellRendererText"/>
                       <attributes>

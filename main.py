@@ -45,7 +45,7 @@ class App(Model):
 			os.system("xdg-open " + path)
 		
 		except Exception as ex:
-			print("Erro: %s" % ex)
+			print("Error: %s" % ex)
 	
 	# On GtkButton Clicked
 	def on_bt_add_file_clicked(self, *args):
@@ -57,7 +57,7 @@ class App(Model):
 			self.save_file(bytecode, name, description)
 			self.renderer_model(self.search_file())
 		except Exception as ex:
-			print("Erro: %s" % ex)
+			print("Error: %s" % ex)
 			self.connection.rollback()
 	
 	# On GtkButton Clicked
@@ -66,10 +66,10 @@ class App(Model):
 			if self.code_file:
 				self.delete_file(int(self.code_file))
 				self.renderer_model(self.search_file())
-				self.show_dialog(self.dialog_window, "Item removido",
-								 ("Arquvivo deletado com sucesso!"))
+				self.show_dialog(self.dialog_window, "Sucess!",
+								 ("File deleted!"))
 		except Exception as ex:
-			print("Erro: %s" % ex)
+			print("Error: %s" % ex)
 			self.connection.rollback()
 	
 	# On GtkTreeView Cursor Changed
@@ -77,7 +77,7 @@ class App(Model):
 		try:
 			self.code_file = self.select_code(args[0].get_selection())
 		except Exception as ex:
-			print("Erro: %s" % ex)
+			print("Error: %s" % ex)
 	
 	# Rederer Model
 	def renderer_model(self, model):
