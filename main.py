@@ -6,7 +6,7 @@ import zlib
 import glib
 
 gi.require_version("Gtk", "3.0")
-from gi.repository import Gtk
+from gi.repository import Gtk, GLib
 from model import Model
 
 
@@ -39,7 +39,7 @@ class App(Model):
 	def on_bt_open_view_file_clicked(self, *args):
 		try:
 			archive = self.search_file_id(int(self.code_file))
-			path = "/tmp/" + archive[0][0]
+			path = os.path.join("/tmp/", archive[0][0])
 			with open(path, "wb") as file:
 				file.write(zlib.decompress(archive[0][1]))
 			os.system("xdg-open " + path)
@@ -97,6 +97,7 @@ class App(Model):
 		component.props.text = (title)
 		component.props.secondary_text = (text)
 		component.props.icon_name = (icon)
+		component.props.modal
 		component.show_all()
 		component.run()
 		component.hide()
