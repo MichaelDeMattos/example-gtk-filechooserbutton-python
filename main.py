@@ -7,13 +7,13 @@ import glib
 
 gi.require_version("Gtk", "3.0")
 from gi.repository import Gtk, GLib
-from model import Model
+from controller import ControllerModelPycFile
 
 
 builder = Gtk.Builder()
-builder.add_from_file("interface.ui")
+__all__ = ["App"]
 
-class App(Model):
+class App(ControllerModelPycFile):
 	
 	def __init__(self, *args, **kwargs):
 		super(App, self).__init__(*args, **kwargs)
@@ -38,27 +38,38 @@ class App(Model):
 	# On GtkButton Clicked
 	def on_bt_open_view_file_clicked(self, *args):
 		try:
-			archive = self.search_file_id(int(self.code_file))
-			path = os.path.join("/tmp/", archive[0][0])
+			archive = self.search_file_id(
+				int(self.code_file)
+			)
+			path = os.path.join(
+				os.path.sep+"tmp"+os.path.sep, archive["file_name"]
+			)
 			with open(path, "wb") as file:
-				file.write(zlib.decompress(archive[0][1]))
+				file.write(zlib.decompress(archive["file"]))
 			os.system("xdg-open " + path)
 		
 		except Exception as ex:
-			print("Error: %s" % ex)
-	
+			print("Error: %s \nSignal: %s \nArgs: %s" % (
+					ex, "on_bt_open_view_file_clicked", args
+				 )
+			)
+
 	# On GtkButton Clicked
 	def on_bt_add_file_clicked(self, *args):
 		try:
 			archive = self.path_file.get_filename()
-			bytecode = zlib.compress(open(archive, "rb").read(), 9)
+			bytecode = zlib.compress(
+				open(archive, "rb").read(), 9
+			)
 			name = os.path.basename(archive)
 			description = self.entry_description.get_text()
 			self.save_file(bytecode, name, description)
 			self.renderer_model(self.search_file())
 		except Exception as ex:
-			print("Error: %s" % ex)
-			self.connection.rollback()
+			print("Error: %s \nSignal: %s \nArgs: %s" % (
+					ex, "on_bt_add_file_clicked", args
+				 )
+			)
 	
 	# On GtkButton Clicked
 	def on_bt_remove_file_clicked(self, *args):
@@ -69,15 +80,20 @@ class App(Model):
 				self.show_dialog(self.dialog_window, "Sucess!",
 								 ("File deleted!"))
 		except Exception as ex:
-			print("Error: %s" % ex)
-			self.connection.rollback()
+			print("Error: %s \nSignal: %s \nArgs: %s" % (
+					ex, "on_bt_remove_file_clicked", args
+				 )
+			)
 	
 	# On GtkTreeView Cursor Changed
 	def on_gr_file_cursor_changed(self, *args):
 		try:
 			self.code_file = self.select_code(args[0].get_selection())
 		except Exception as ex:
-			print("Error: %s" % ex)
+			print("Error: %s \nSignal: %s \nArgs: %s" % (
+					ex, "on_gr_file_cursor_changed", args
+				 )
+			)
 	
 	# Rederer Model
 	def renderer_model(self, model):
@@ -103,5 +119,8 @@ class App(Model):
 		component.hide()
 
 if __name__ == "__main__":
+	builder.add_from_file(
+		os.path.curdir+os.path.sep+"templates"+os.path.sep+"interface.ui"
+	)
 	builder.connect_signals(App())
 	Gtk.main()
