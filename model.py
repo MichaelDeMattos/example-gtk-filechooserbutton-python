@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 import os
-from peewee import *
+from peewee import IntegerField, CharField, BlobField, DateTimeField, Model, SqliteDatabase
 from datetime import datetime
 
 db = SqliteDatabase(os.curdir+os.path.sep+"data"+os.path.sep+"dotpyc.db")

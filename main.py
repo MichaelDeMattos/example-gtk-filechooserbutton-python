@@ -3,10 +3,9 @@
 import gi
 import os
 import zlib
-import glib
 
 gi.require_version("Gtk", "3.0")
-from gi.repository import Gtk, GLib
+from gi.repository import Gtk
 from controller import ControllerModelPycFile
 
 

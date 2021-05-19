@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from peewee import *
+from peewee import Table
 from model import db, ModelPycFile
 
 __all__ = ["ControllerModelPycFile"]
