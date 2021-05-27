@@ -3,6 +3,7 @@
 import gi
 import os
 import zlib
+import subprocess
 
 gi.require_version("Gtk", "3.0")
 from gi.repository import Gtk
@@ -45,7 +46,7 @@ class App(ControllerModelPycFile):
 			)
 			with open(path, "wb") as file:
 				file.write(zlib.decompress(archive["file"]))
-			os.system("xdg-open " + path)
+			subprocess.call(["xdg-open", path])
 		
 		except Exception as ex:
 			print("Error: %s \nSignal: %s \nArgs: %s" % (
