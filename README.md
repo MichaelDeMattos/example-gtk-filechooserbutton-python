@@ -1,4 +1,4 @@
-# pyc-file
+# upload-file-gtk
 Upload file for database using Python, Gtk and Orm Peewee
 
 Install Debian or derivates:
