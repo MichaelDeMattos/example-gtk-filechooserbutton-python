@@ -4,7 +4,8 @@ import os
 from peewee import IntegerField, CharField, BlobField, DateTimeField, Model, SqliteDatabase
 from datetime import datetime
 
-db = SqliteDatabase(os.curdir+os.path.sep+"data"+os.path.sep+"dotpyc.db")
+app_path = os.path.dirname(os.path.abspath(__file__))
+db = SqliteDatabase(os.path.join(app_path, "data", "database.db"))
 __all__ = ["ModelPycFile", "Meta"]
 
 class ModelPycFile(Model):
@@ -17,7 +18,6 @@ class ModelPycFile(Model):
     class Meta:
         database = db
 
-if __name__ == "__main__":
+if not os.path.isfile(os.path.join(app_path, "data", "database.db")):
     """ Create tables if not exists """
     db.create_tables([ModelPycFile])
-    

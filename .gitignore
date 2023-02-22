@@ -2,3 +2,7 @@ __pycache__
 *.ui~
 *.pyc
 *.vscode
+*.db
+venv
+build
+dist
